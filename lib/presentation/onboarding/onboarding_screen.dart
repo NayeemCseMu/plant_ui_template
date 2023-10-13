@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plant_ui_app/core/app_routes.dart';
 import 'package:plant_ui_app/core/utils/utils.dart';
 import 'package:plant_ui_app/data/dummy_data.dart';
-import 'package:plant_ui_app/widgets/slider_onboard.dart';
 
 import '../../core/utils/constants.dart';
 import '../../widgets/custom_image_view.dart';

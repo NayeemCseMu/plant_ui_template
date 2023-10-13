@@ -9,6 +9,9 @@ class PlantModel extends Equatable {
   final String name;
   final String image;
   final double price;
+  final String height;
+  final String temperature;
+  final String pot;
   final String details;
   const PlantModel({
     required this.id,
@@ -16,6 +19,9 @@ class PlantModel extends Equatable {
     required this.name,
     required this.image,
     required this.price,
+    required this.height,
+    required this.temperature,
+    required this.pot,
     required this.details,
   });
 
@@ -25,6 +31,9 @@ class PlantModel extends Equatable {
     String? name,
     String? image,
     double? price,
+    String? height,
+    String? temperature,
+    String? pot,
     String? details,
   }) {
     return PlantModel(
@@ -33,6 +42,9 @@ class PlantModel extends Equatable {
       name: name ?? this.name,
       image: image ?? this.image,
       price: price ?? this.price,
+      height: height ?? this.height,
+      temperature: temperature ?? this.temperature,
+      pot: pot ?? this.pot,
       details: details ?? this.details,
     );
   }
@@ -44,6 +56,9 @@ class PlantModel extends Equatable {
       'name': name,
       'image': image,
       'price': price,
+      'height': height,
+      'temperature': temperature,
+      'pot': pot,
       'details': details,
     };
   }
@@ -55,6 +70,9 @@ class PlantModel extends Equatable {
       name: map['name'] as String,
       image: map['image'] as String,
       price: map['price'] as double,
+      height: map['height'] as String,
+      temperature: map['temperature'] as String,
+      pot: map['pot'] as String,
       details: map['details'] as String,
     );
   }
@@ -75,6 +93,9 @@ class PlantModel extends Equatable {
       name,
       image,
       price,
+      height,
+      temperature,
+      pot,
       details,
     ];
   }

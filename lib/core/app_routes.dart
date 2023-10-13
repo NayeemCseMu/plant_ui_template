@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_ui_app/data/model/plant_model.dart';
 import 'package:plant_ui_app/presentation/details/plant_detials.dart';
 import 'package:plant_ui_app/presentation/home/home_page.dart';
 import '../presentation/onboarding/onboarding_screen.dart';
@@ -19,9 +20,12 @@ class AppRoutes {
             settings: settings, builder: (_) => const HomePage());
 
       case AppRoutes.details:
-        final id = settings.arguments as int;
+        final item = settings.arguments as PlantModel;
         return MaterialPageRoute(
-            settings: settings, builder: (_) => PlantDetailsInfo(i: id,));
+            settings: settings,
+            builder: (_) => PlantDetailsInfo(
+                  plantModel: item,
+                ));
 
       default:
         return MaterialPageRoute(

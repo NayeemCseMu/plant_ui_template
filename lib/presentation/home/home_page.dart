@@ -35,19 +35,29 @@ class HomePage extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                    child: Container(
-                  height: 52,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                      color: kGray_100,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.white)),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(KImages.searchIcon),
-                      Utils.horizontalSpace(10),
-                      const Text("Search")
-                    ],
+                    child: SizedBox(
+                  height: 52.h,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      fillColor: kGray_100,
+                      filled: true,
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SvgPicture.asset(
+                          KImages.searchIcon,
+                        ),
+                      ),
+                      hintText: "Search",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Colors.white)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Colors.white)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Colors.white)),
+                    ),
                   ),
                 )),
                 Utils.horizontalSpace(10),
@@ -97,7 +107,7 @@ class HomePage extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, AppRoutes.details,
-                                arguments: i);
+                                arguments: KDummyData.plantsList[i]);
                           },
                           child: Container(
                             // height: 300.h,
@@ -113,7 +123,7 @@ class HomePage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Hero(
-                                    tag: i,
+                                    tag: KDummyData.plantsList[i].slug,
                                     child: CustomImageView(
                                       imagePath: KDummyData.plantsList[i].image,
                                       height: 140.h,
@@ -123,7 +133,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                   ),
                                   Utils.verticalSpace(16),
-                                   CustomTextView(
+                                  CustomTextView(
                                     text: KDummyData.plantsList[i].name,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
@@ -131,12 +141,13 @@ class HomePage extends StatelessWidget {
                                     maxLines: 1,
                                   ),
                                   Utils.verticalSpace(30),
-                                   Row(
+                                  Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       CustomTextView(
-                                        text: "\$${KDummyData.plantsList[i].price}",
+                                        text:
+                                            "\$${KDummyData.plantsList[i].price}",
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600,
                                       ),

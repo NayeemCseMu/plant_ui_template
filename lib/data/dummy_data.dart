@@ -5,8 +5,8 @@ import 'model/plant_model.dart';
 class KDummyData {
   static List<String> onboardingImages = [
     KImages.plantImgOne,
-    KImages.plantImgTwo,
-    KImages.plantImgOne,
+    KImages.plantImgThree,
+    KImages.plantImgFive,
   ];
 
   static List<PlantModel> plantsList = [
@@ -16,6 +16,9 @@ class KDummyData {
       name: "Lucky Jade Plant",
       image: KImages.plantImgOne,
       price: 12.99,
+      height: "30cm - 40cm",
+      temperature: "24c",
+      pot: "Ciramic Pot",
       details:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi in nulla posuere sollicitudin aliquam ultrices sagittis",
     ),
@@ -25,6 +28,9 @@ class KDummyData {
       name: "Snake Plant",
       image: KImages.plantImgTwo,
       price: 15.99,
+      height: "18cm - 40cm",
+      temperature: "24c",
+      pot: "Ciramic Pot",
       details:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi in nulla posuere sollicitudin aliquam ultrices sagittis",
     ),
@@ -32,8 +38,23 @@ class KDummyData {
       id: 2,
       slug: "peporomia-plant",
       name: "Peporomia Plant",
-      image: KImages.plantImgOne,
+      image: KImages.plantImgThree,
+      height: "15cm - 35cm",
+      temperature: "30c",
+      pot: "Ciramic Pot",
       price: 8.99,
+      details:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi in nulla posuere sollicitudin aliquam ultrices sagittis",
+    ),
+    PlantModel(
+      id: 2,
+      slug: "clematis-plant",
+      name: "Clematis Plant",
+      image: KImages.plantImgFour,
+      height: "20cm - 20cm",
+      temperature: "28c",
+      pot: "Ciramic Pot",
+      price: 5.99,
       details:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi in nulla posuere sollicitudin aliquam ultrices sagittis",
     ),
@@ -41,10 +62,38 @@ class KDummyData {
       id: 2,
       slug: "small-plant",
       name: "Small Plant",
-      image: KImages.plantImgTwo,
+      image: KImages.plantImgFive,
+      height: "20cm - 20cm",
+      temperature: "28c",
+      pot: "Ciramic Pot",
+      price: 5.99,
+      details:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi in nulla posuere sollicitudin aliquam ultrices sagittis",
+    ),
+    PlantModel(
+      id: 2,
+      slug: "levendar-plant",
+      name: "Levendar Plant",
+      image: KImages.plantImgSix,
+      height: "20cm - 20cm",
+      temperature: "28c",
+      pot: "Ciramic Pot",
+      price: 5.99,
+      details:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi in nulla posuere sollicitudin aliquam ultrices sagittis",
+    ),
+    PlantModel(
+      id: 2,
+      slug: "Tunais-plant",
+      name: "tunais Plant",
+      image: KImages.plantImgSeven,
+      height: "20cm - 20cm",
+      temperature: "28c",
+      pot: "Ciramic Pot",
       price: 5.99,
       details:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi in nulla posuere sollicitudin aliquam ultrices sagittis",
     ),
   ];
+
 }
