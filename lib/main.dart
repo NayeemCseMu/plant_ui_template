@@ -46,6 +46,8 @@ class MyApp extends StatelessWidget {
       scaffoldBackgroundColor: kScaffoldColor,
       appBarTheme:
           const AppBarTheme(backgroundColor: Colors.transparent, elevation: 0),
+      
+      fontFamily: 'Poppins',
       textTheme: const TextTheme(
         bodySmall: TextStyle(fontSize: 12, height: 1.83),
         bodyLarge:

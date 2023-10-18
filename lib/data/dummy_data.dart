@@ -86,7 +86,7 @@ class KDummyData {
       id: 2,
       slug: "Tunais-plant",
       name: "tunais Plant",
-      image: KImages.plantImgSeven,
+      image: KImages.plantImgOne,
       height: "20cm - 20cm",
       temperature: "28c",
       pot: "Ciramic Pot",
@@ -95,5 +95,4 @@ class KDummyData {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi in nulla posuere sollicitudin aliquam ultrices sagittis",
     ),
   ];
-
 }

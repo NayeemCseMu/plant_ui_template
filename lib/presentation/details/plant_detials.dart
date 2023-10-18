@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plant_ui_app/core/utils/constants.dart';
 import 'package:plant_ui_app/core/utils/k_images.dart';
@@ -26,11 +27,40 @@ class PlantDetailsInfo extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           SizedBox(
             height: size.height * 0.4,
-            child: Hero(
-              tag: plantModel.slug,
-              child: CustomImageView(
-                imagePath: plantModel.image,
-              ),
+            width: size.width,
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: const Alignment(0, 0),
+              children: [
+                Hero(
+                  tag: plantModel.slug,
+                  child: CustomImageView(
+                    imagePath: plantModel.image,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  right: 80,
+                  child: Column(
+                    children: [
+                      ...List.generate(
+                        3,
+                        (index) => AnimatedContainer(
+                          height: index == 0 ? 20.h : 8.h,
+                          width: 8.w,
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.only(bottom: 8),
+                          decoration: BoxDecoration(
+                              color:
+                                  index == 0 ? kPrimaryColor : kLightTextColor,
+                              borderRadius: BorderRadius.circular(8)),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
           Padding(
@@ -76,19 +106,19 @@ class PlantDetailsInfo extends StatelessWidget {
                   PlantCondition(
                     title: "Height",
                     value: plantModel.height,
-                    icon: KImages.filterIcon,
+                    icon: KImages.heightIcon,
                   ),
                   Utils.horizontalSpace(10),
                   PlantCondition(
                     title: "Temperature",
                     value: plantModel.temperature,
-                    icon: KImages.filterIcon,
+                    icon: KImages.hotIcon,
                   ),
                   Utils.horizontalSpace(10),
                   PlantCondition(
                     title: "Pot",
                     value: plantModel.pot,
-                    icon: KImages.filterIcon,
+                    icon: KImages.potIcon,
                   ),
                 ],
               ),
@@ -151,8 +181,9 @@ class PlantCondition extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset(
+          Image.asset(
             icon,
+            height: 20.h,
             color: Colors.white,
           ),
           Utils.verticalSpace(10),
