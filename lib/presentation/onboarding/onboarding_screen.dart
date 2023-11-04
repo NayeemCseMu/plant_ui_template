@@ -43,8 +43,8 @@ class _OnbardingScreenState extends State<OnbardingScreen> {
                 alignment: Alignment.topRight,
                 child: CustomTextView(
                   text: "Skip",
-                  fontWeight: FontWeight.w500,
-                  color: kParagraphText,
+                  fontWeight: FontWeight.w400,
+                  color: kTextColor,
                   fontSize: 16,
                 ),
               ),
@@ -86,13 +86,22 @@ class _OnbardingScreenState extends State<OnbardingScreen> {
                 ],
               ),
               Utils.verticalSpace(20),
-              const CustomTextView(
-                text: "Enjoy your \nLife with Plants",
-                fontWeight: FontWeight.w400,
-                textAlign: TextAlign.left,
-                color: kTextColor,
-                fontSize: 36,
-              ),
+              const Text.rich(TextSpan(
+                  text: "Enjoy your \nLife with",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: kTextColor,
+                    fontSize: 36,
+                  ),
+                  children: [
+                    TextSpan(
+                        text: " Plants",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: kTextColor,
+                          fontSize: 36,
+                        ))
+                  ])),
               Utils.verticalSpace(30),
               GestureDetector(
                 onTap: () {

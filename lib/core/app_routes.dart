@@ -1,6 +1,5 @@
+
 import 'package:flutter/material.dart';
-import 'package:plant_ui_app/data/model/plant_model.dart';
-import 'package:plant_ui_app/presentation/details/plant_detials.dart';
 import 'package:plant_ui_app/presentation/home/home_page.dart';
 import '../presentation/onboarding/onboarding_screen.dart';
 
@@ -19,13 +18,15 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: settings, builder: (_) => const HomePage());
 
-      case AppRoutes.details:
-        final item = settings.arguments as PlantModel;
-        return MaterialPageRoute(
-            settings: settings,
-            builder: (_) => PlantDetailsInfo(
-                  plantModel: item,
-                ));
+      // case AppRoutes.details:
+      //   final item = settings.arguments as PlantModel;
+      //   final animation = settings.arguments as Animation;
+      //   return MaterialPageRoute(
+      //       settings: settings,
+      //       builder: (_) => PlantDetailsInfo(
+      //             plantModel: item,
+      //             animation: animation,
+      //           ));
 
       default:
         return MaterialPageRoute(

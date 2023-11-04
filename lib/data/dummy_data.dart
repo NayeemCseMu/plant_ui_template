@@ -4,9 +4,9 @@ import 'model/plant_model.dart';
 
 class KDummyData {
   static List<String> onboardingImages = [
-    KImages.plantImgOne,
+    KImages.plantImgFour,
+    KImages.plantImgTwo,
     KImages.plantImgThree,
-    KImages.plantImgFive,
   ];
 
   static List<PlantModel> plantsList = [
