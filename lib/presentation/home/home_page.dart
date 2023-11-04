@@ -8,11 +8,9 @@ import 'package:plant_ui_app/core/utils/utils.dart';
 import 'package:plant_ui_app/data/dummy_data.dart';
 import 'package:plant_ui_app/data/model/plant_model.dart';
 import 'package:plant_ui_app/presentation/details/plant_detials.dart';
-import 'package:plant_ui_app/widgets/custom_image_view.dart';
 import 'package:plant_ui_app/widgets/custom_text_view.dart';
 
-import '../../widgets/plant_title.dart';
-import '../../widgets/price_favorite_btn.dart';
+import 'components/plant_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,6 +30,7 @@ class _HomePageState extends State<HomePage>
   Animation<double> get interval2 => CurvedAnimation(
       parent: animation, curve: const Interval(0.6, 1, curve: Curves.easeIn));
 
+ 
   @override
   void initState() {
     controller = AnimationController(
@@ -76,12 +75,13 @@ class _HomePageState extends State<HomePage>
               child: Row(
                 children: [
                   Expanded(
-                      child: SizedBox(
-                    height: 52.h,
-                    child: TextField(
-                      decoration: inputDecoration,
+                    child: SizedBox(
+                      height: 52.h,
+                      child: TextField(
+                        decoration: inputDecoration,
+                      ),
                     ),
-                  )),
+                  ),
                   Utils.horizontalSpace(10),
                   Container(
                     height: 52,
@@ -101,76 +101,73 @@ class _HomePageState extends State<HomePage>
           ),
           Utils.verticalSpace(0),
           Expanded(
-              child: MasonryGridView.builder(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                  itemCount: KDummyData.plantsList.length,
-                  crossAxisSpacing: 30,
-                  mainAxisSpacing: 30,
-                  gridDelegate:
-                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  itemBuilder: (c, i) {
-                    return Column(
-                      children: [
-                        if (i == 0) ...[
-                          SlideTransition(
-                            position: Tween<Offset>(
-                                    begin: const Offset(-0.3, 0),
-                                    end: Offset.zero)
-                                .animate(interval2),
-                            child: FadeTransition(
-                              opacity: interval2,
-                              child: const Padding(
-                                padding: EdgeInsets.only(
-                                    left: 4, right: 8, bottom: 8),
-                                child: CustomTextView(
-                                  text: "Found \n10 Results",
-                                  fontSize: 28,
-                                  textAlign: TextAlign.start,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                        SlideTransition(
-                          position: Tween<Offset>(
-                                  begin: const Offset(0, 0.3), end: Offset.zero)
-                              .animate(interval1),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                PageRouteBuilder(
-                                  transitionDuration:
-                                      const Duration(milliseconds: 600),
-                                  reverseTransitionDuration:
-                                      const Duration(milliseconds: 600),
-                                  pageBuilder: (_, animation, __) =>
-                                      FadeTransition(
-                                    opacity: animation,
-                                    child: PlantDetailsInfo(
-                                      plantModel: KDummyData.plantsList[i],
-                                      animation: animation,
-                                    ),
-                                  ),
-                                  transitionsBuilder: (context, animation,
-                                      secondaryAnimation, child) {
-                                    return child;
-                                  },
-                                ),
-                              );
-                            },
-                            child: PlantCard(
-                              item: KDummyData.plantsList[i],
+            child: MasonryGridView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              itemCount: KDummyData.plantsList.length,
+              crossAxisSpacing: 30,
+              mainAxisSpacing: 30,
+              gridDelegate:
+                  const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemBuilder: (c, i) {
+                return Column(
+                  children: [
+                    if (i == 0) ...[
+                      SlideTransition(
+                        position: Tween<Offset>(
+                                begin: const Offset(-0.3, 0), end: Offset.zero)
+                            .animate(interval2),
+                        child: FadeTransition(
+                          opacity: interval2,
+                          child: const Padding(
+                            padding:
+                                EdgeInsets.only(left: 4, right: 8, bottom: 8),
+                            child: CustomTextView(
+                              text: "Found \n10 Results",
+                              fontSize: 28,
+                              textAlign: TextAlign.start,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
-                      ],
-                    );
-                  })),
+                      ),
+                    ],
+                    SlideTransition(
+                      position: Tween<Offset>(
+                              begin: const Offset(0, 0.3), end: Offset.zero)
+                          .animate(interval1),
+                      child: PlantCard(
+                        item: KDummyData.plantsList[i],
+                        press: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              transitionDuration:
+                                  const Duration(milliseconds: 600),
+                              reverseTransitionDuration:
+                                  const Duration(milliseconds: 600),
+                              pageBuilder: (_, animation, __) => FadeTransition(
+                                opacity: animation,
+                                child: PlantDetailsInfo(
+                                  plantModel: KDummyData.plantsList[i],
+                                  animation: animation,
+                                ),
+                              ),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                return child;
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -196,92 +193,4 @@ class _HomePageState extends State<HomePage>
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: Colors.white)),
   );
-}
-
-class PlantCard extends StatelessWidget {
-  const PlantCard({
-    super.key,
-    required this.item,
-  });
-
-  final PlantModel item;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
-      decoration: BoxDecoration(
-          color: kGray_100, borderRadius: BorderRadius.circular(20)),
-      child: Column(
-        children: [
-          Hero(
-            tag: item.image,
-            flightShuttleBuilder: (flightContext, animation, flightDirection,
-                fromHeroContext, toHeroContext) {
-              switch (flightDirection) {
-                case HeroFlightDirection.push:
-                  return Material(
-                      type: MaterialType.transparency,
-                      child: SlideTransition(
-                          position: animation.drive(Tween(
-                                  begin: const Offset(0, 0.5),
-                                  end: const Offset(0, 0))
-                              .chain(CurveTween(curve: Curves.ease))),
-                          child: toHeroContext.widget));
-
-                case HeroFlightDirection.pop:
-                  return Material(
-                      type: MaterialType.transparency,
-                      child: SlideTransition(
-                          position: animation.drive(Tween(
-                                  begin: const Offset(0, -0.5),
-                                  end: const Offset(0, 0))
-                              .chain(CurveTween(curve: Curves.ease))),
-                          child: fromHeroContext.widget));
-              }
-            },
-            child: CustomImageView(
-              imagePath: item.image,
-              height: 140.h,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.cover,
-              onTap: null,
-            ),
-          ),
-          Utils.verticalSpace(16),
-          Hero(
-            tag: item.name,
-            flightShuttleBuilder: (flightContext, animation, flightDirection,
-                fromHeroContext, toHeroContext) {
-              switch (flightDirection) {
-                case HeroFlightDirection.push:
-                  return Material(
-                      type: MaterialType.transparency,
-                      child: toHeroContext.widget);
-
-                case HeroFlightDirection.pop:
-                  return Material(
-                      type: MaterialType.transparency,
-                      child: fromHeroContext.widget);
-              }
-            },
-            child: PlantTitle(
-              title: item.name,
-              fontS: 18,
-            ),
-          ),
-          Utils.verticalSpace(30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              PlantPrice(
-                price: "${item.price}",
-              ),
-              const FavoriteBtn(),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 }
